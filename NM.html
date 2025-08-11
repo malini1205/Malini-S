@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hospital Scheduling System Prototype</title>
+<link rel="stylesheet" href="NM.css" />
+<script src="NM.js"></script>
+</head>
+<body>
+
+<h1>Hospital Appointment Scheduler</h1>
+
+<form id="appointmentForm">
+  <label for="branch">Select Branch:</label>
+  <select id="branch" required>
+    <option value="" disabled selected>Select branch</option>
+    <option value="BranchA">Branch A</option>
+    <option value="BranchB">Branch B</option>
+    <option value="BranchC">Branch C</option>
+  </select>
+
+  <label for="doctor">Select Doctor:</label>
+  <select id="doctor" required>
+    <option value="" disabled selected>Select doctor</option>
+  </select>
+
+  <label for="appointmentTime">Select Appointment Time:</label>
+  <input type="datetime-local" id="appointmentTime" required min="" />
+
+  <div id="availability"></div>
+
+  <button type="submit" disabled>Book Appointment</button>
+</form>
+
+<div id="report">
+  <h2>Appointments Report</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Branch</th>
+        <th>Doctor</th>
+        <th>Appointment Time</th>
+      </tr>
+    </thead>
+    <tbody id="appointmentsTableBody">
+      <tr><td colspan="3" style="text-align:center; color:#7f8c8d;">No appointments booked yet.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+</body>
+</html>
