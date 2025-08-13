@@ -1,53 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hospital Scheduling System Prototype</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hospital Appointment Booking & Reporting</title>
 <link rel="stylesheet" href="NM.css" />
-<script src="NM.js"></script>
+  <script src="NM.js" defer></script>
+  
 </head>
 <body>
 
-<h1>Hospital Appointment Scheduler</h1>
+<h2>Hospital Appointment Booking & Management</h2>
 
-<form id="appointmentForm">
-  <label for="branch">Select Branch:</label>
+<form id="bookingForm" aria-label="Appointment booking form">
+  <label for="patientName">Patient Name</label>
+  <input type="text" id="patientName" required placeholder="Enter patient full name" />
+
+  <label for="branch">Hospital Branch</label>
   <select id="branch" required>
-    <option value="" disabled selected>Select branch</option>
-    <option value="BranchA">Branch A</option>
-    <option value="BranchB">Branch B</option>
-    <option value="BranchC">Branch C</option>
+    <option value="">Select Branch</option>
+    <option value="1">Central Hospital</option>
+    <option value="2">Northside Clinic</option>
   </select>
 
-  <label for="doctor">Select Doctor:</label>
-  <select id="doctor" required>
-    <option value="" disabled selected>Select doctor</option>
+  <label for="department">Department</label>
+  <select id="department" required disabled>
+    <option value="">Select Department</option>
   </select>
 
-  <label for="appointmentTime">Select Appointment Time:</label>
+  <label for="doctor">Doctor</label>
+  <select id="doctor" required disabled>
+    <option value="">Select Doctor</option>
+  </select>
+
+  <label for="appointmentTime">Appointment Date & Time</label>
   <input type="datetime-local" id="appointmentTime" required min="" />
 
-  <div id="availability"></div>
+  <label for="appointmentAction">Appointment Action</label>
+  <select id="appointmentAction" required>
+    <option value="book">Book New Appointment</option>
+    <option value="cancel">Cancel Appointment</option>
+    <option value="reschedule">Reschedule Appointment</option>
+  </select>
 
-  <button type="submit" disabled>Book Appointment</button>
+  <label for="existingAppointmentId" id="existingAppointmentLabel" style="display:none;">Existing Appointment ID (for cancel/reschedule)</label>
+  <input type="text" id="existingAppointmentId" placeholder="Enter Appointment ID" style="display:none;" />
+
+  <button type="submit">Submit</button>
 </form>
 
-<div id="report">
-  <h2>Appointments Report</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Branch</th>
-        <th>Doctor</th>
-        <th>Appointment Time</th>
-      </tr>
-    </thead>
-    <tbody id="appointmentsTableBody">
-      <tr><td colspan="3" style="text-align:center; color:#7f8c8d;">No appointments booked yet.</td></tr>
-    </tbody>
-  </table>
-</div>
+<div id="message" class="message" style="display:none;" role="alert"></div>
+
+<section class="report-section" aria-label="Reports">
+  <h3>Reports</h3>
+  <button id="loadReportsBtn" type="button">Load Doctor Workload & Appointment Trends</button>
+  <div id="reports" aria-live="polite" style="margin-top:1rem;"></div>
+</section>
 
 
 
